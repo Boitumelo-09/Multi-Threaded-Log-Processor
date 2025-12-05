@@ -1,11 +1,11 @@
-#include <iostream>
+#include "utility.h"
 #include <thread>
 #include <mutex>
 #include <ctime>
 #include <vector>
-#include <queue>
+#include "LogQueue.h"
 
-typedef std::string text_t;
+
 text_t generateLog(std::vector<text_t>& head, std::vector<text_t>& messages);
 void print(text_t);
 
@@ -30,5 +30,5 @@ text_t generateLog(std::vector<text_t>& head, std::vector<text_t>& messages) {
     int randomMessageIndex = rand() % messages.size();
     return "Log[" + head[randomHeadIndex] + " : " + messages[randomMessageIndex] + "]";
 }
-void print(text_t text) {std::cout << text<<std::endl;}
+
    
