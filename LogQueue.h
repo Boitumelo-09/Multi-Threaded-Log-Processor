@@ -3,25 +3,23 @@
 #include <iostream>
 #include <mutex>
 #include <ctime>
-#include <vector>
+#include <chrono>
 #include <condition_variable>
+#include <queue>
 
-std::mutex _MUTEXLOCK;
-std::condition_variable _CONDITION_VARIABLE;
+using namespace std::chrono_literals;
 
+//this class will have a que THAT STORES THE GENERATED LOGS
 
-class Log
+class LogQueue
 {
-	std::vector<std::string> _IDENTIFIERS;
-	std::vector<std::string> _MESSAGES;
 public:
-	
-	Log();
-	
-
-	std::string generateLog();
-	std::vector<std::string> getIdentifiers();
-	std::vector<std::string> getMessages();
+	LogQueue();
+	~LogQueue();
+	void pushLogs(std::string& log);
+private:
+	std::mutex _MUTEX;
+	std::queue<std::string> logs;
+	std::condition_variable _CONDITIONVARIABLE;
 };
 
-//this class will have a que and generate logs
