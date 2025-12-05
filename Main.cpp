@@ -5,23 +5,30 @@
 #include <vector>
 #include <queue>
 
+typedef std::string text_t;
+text_t generateLog(std::vector<text_t>& head, std::vector<text_t>& messages);
+void print(text_t);
 
-std::string generateLog(std::vector<std::string>& head, std::vector<std::string>& messages);
 int main(void) {
-    std::vector<std::string> types = { "INFO", "WARNING", "ERROR" };
-    std::vector<std::string> messages = {
+    std::vector<text_t> types = { "INFO", "WARNING", "ERROR" };
+    std::vector<text_t> messages = {
         "Temperature reading normal",
         "Memory usage high",
         "Sensor disconnected",
         "Battery low",
         "Voltage spike detected"
     };
-    std::string newLog = generateLog(types, messages);
-
+    text_t newLog = generateLog(types, messages);
+    print(newLog);
 	return 0;
 }
 
-std::string generateLog(std::vector<std::string>& head, std::vector<std::string>& messages) {
-
-
+text_t generateLog(std::vector<text_t>& head, std::vector<text_t>& messages) {
+    srand(time(NULL));
+    
+    int randomHeadIndex = rand() % head.size();
+    int randomMessageIndex = rand() % messages.size();
+    return "Log[" + head[randomHeadIndex] + " : " + messages[randomMessageIndex] + "]";
 }
+void print(text_t text) {std::cout << text<<std::endl;}
+   
