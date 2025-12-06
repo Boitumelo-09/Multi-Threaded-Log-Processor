@@ -16,16 +16,7 @@ int main(void) {
         "Voltage spike detected"
     };
     
-    LogQueue logQueue;
-    for (int i = 0; i < 20; ++i) {
-        text_t newLog = generateLog(types, messages);
-        logQueue.pushTask([newLog] {
-            // Worker will process this log
-            std::cout << "Processing: " << log << std::endl;
-            });
-        std::this_thread::sleep_for(2000ms);
-    }
-
+  
 
 	return 0;
 }

@@ -16,10 +16,11 @@ class LogQueue
 public:
 	LogQueue();
 	~LogQueue();
-	void pushLogs(std::string& log);
+	void pushLogs(const std::string& log);
 private:
 	std::mutex _MUTEX;
-	std::queue<std::string> logs;
+	std::queue<std::string> logsQueue;
 	std::condition_variable _CONDITIONVARIABLE;
+	bool taskAdded = false;
 };
 
