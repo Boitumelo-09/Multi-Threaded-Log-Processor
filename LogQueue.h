@@ -16,6 +16,7 @@ class LogQueue
 public:
 	LogQueue();
 	~LogQueue();
+	std::queue<std::string> getQueue();
 	void pushLogs(const std::string& log);
 private:
 	std::mutex _MUTEX;

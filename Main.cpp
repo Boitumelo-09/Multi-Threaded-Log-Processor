@@ -1,12 +1,13 @@
 #include "utility.h"
 #include "LogQueue.h"
+#include <cassert>
 
 
 text_t generateLog(std::vector<text_t>& head, std::vector<text_t>& messages);
-
+static void mainthreadProduction(std::vector<text_t>& head, std::vector<text_t>& messages, LogQueue& queueObject);
 
 int main(void) {
-    
+    srand(time(NULL));
     std::vector<text_t> types = { "INFO", "WARNING", "ERROR" };
     std::vector<text_t> messages = {
         "Temperature reading normal",
@@ -15,19 +16,17 @@ int main(void) {
         "Battery low",
         "Voltage spike detected"
     };
-    
-  // PUSHING 20 RANDOMLY GENERATED LOGS
-    for (size_t i = 0; i < 19; i++)
-    {
-        text_t randomLog = generateLog(types, messages);
-        
-    }
-   print("generating");
+    LogQueue queueObject;
+  
+    mainthreadProduction(types, messages, queueObject);
+   
+
+
 	return 0;
 }
 
 text_t generateLog(std::vector<text_t>& head, std::vector<text_t>& messages) {
-    srand(time(NULL));
+    
     
     int randomHeadIndex = rand() % head.size();
     int randomMessageIndex = rand() % messages.size();
@@ -35,4 +34,19 @@ text_t generateLog(std::vector<text_t>& head, std::vector<text_t>& messages) {
     
 }
 
-   
+static void mainthreadProduction(std::vector<text_t>& head, std::vector<text_t>& messages, LogQueue& queueObject) {
+    for (size_t i = 0; i < 19; i++)
+    {
+        text_t randomLog = generateLog(head, messages);
+        queueObject.pushLogs(randomLog);
+       
+    }
+    
+    std::this_thread::sleep_for(500ms);
+    std::queue<text_t> copy = queueObject.getQueue();
+    //printing from our queue to check if we really recorded
+    while (!copy.empty()) {
+        print(copy.front());
+        copy.pop();
+    }
+}

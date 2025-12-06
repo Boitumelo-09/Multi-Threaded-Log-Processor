@@ -23,5 +23,6 @@ text_t horizontalPadding();
 
 void verticalPadding();
 void exitProgram();
+
 void print(text_t text);
 #endif
