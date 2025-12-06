@@ -9,7 +9,7 @@ void clearScreen() {
     system(CLEAR_COMMAND);
 }
 void newLine() {
-    std::cout << std::string(2, '\n');
+    std::cout << text_t(2, '\n');
 }
 void pressToContinue() {
     newLine();
@@ -19,9 +19,9 @@ void pressToContinue() {
 }
 
 void verticalPadding() {
-    std::cout << std::string(5, '\n');
+    std::cout << text_t(5, '\n');
 }
-std::string horizontalPadding() {
+text_t horizontalPadding() {
     return  std::string(5, '\t');
 }
 void exitProgram() {

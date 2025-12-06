@@ -3,7 +3,7 @@
 
 
 text_t generateLog(std::vector<text_t>& head, std::vector<text_t>& messages);
-void print(text_t);
+
 
 int main(void) {
     
@@ -16,8 +16,13 @@ int main(void) {
         "Voltage spike detected"
     };
     
-  
-
+  // PUSHING 20 RANDOMLY GENERATED LOGS
+    for (size_t i = 0; i < 19; i++)
+    {
+        text_t randomLog = generateLog(types, messages);
+        
+    }
+   print("generating");
 	return 0;
 }
 
@@ -27,6 +32,7 @@ text_t generateLog(std::vector<text_t>& head, std::vector<text_t>& messages) {
     int randomHeadIndex = rand() % head.size();
     int randomMessageIndex = rand() % messages.size();
     return "Log[" + head[randomHeadIndex] + " : " + messages[randomMessageIndex] + "]";
+    
 }
 
    

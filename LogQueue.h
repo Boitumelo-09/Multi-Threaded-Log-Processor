@@ -21,6 +21,6 @@ private:
 	std::mutex _MUTEX;
 	std::queue<std::string> logsQueue;
 	std::condition_variable _CONDITIONVARIABLE;
-	bool taskAdded = false;
+	bool taskAdded = 0;
 };
 

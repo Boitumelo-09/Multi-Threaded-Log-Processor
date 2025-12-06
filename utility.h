@@ -13,13 +13,15 @@
 #else
 #define CLEAR_COMMAND "clear"
 #endif
+typedef std::string text_t;
 void clearScreen();
 void newLine();
 void pressToContinue();
 void clearBuffer();
-std::string horizontalPadding();
-typedef std::string text_t;
+
+text_t horizontalPadding();
+
 void verticalPadding();
 void exitProgram();
-
+void print(text_t text);
 #endif
