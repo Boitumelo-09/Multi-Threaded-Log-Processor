@@ -18,6 +18,7 @@ public:
 	~LogQueue();
 	std::queue<std::string> getQueue();
 	void pushLogs(const std::string& log);
+	void popLog();
 private:
 	std::mutex _MUTEX;
 	std::queue<std::string> logsQueue;

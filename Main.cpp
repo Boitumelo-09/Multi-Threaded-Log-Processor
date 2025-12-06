@@ -1,6 +1,6 @@
 #include "utility.h"
 #include "LogQueue.h"
-#include <cassert>
+
 
 
 text_t generateLog(std::vector<text_t>& head, std::vector<text_t>& messages);
@@ -20,8 +20,12 @@ int main(void) {
   
     mainthreadProduction(types, messages, queueObject);
    
-
-
+    /*std::thread _thread0001(queueObject.popLog());*/
+    //this is wrong, threads run callables (functions, lambdas, functors).
+    //queueObject.popLog() is a function but it is not direct, so it is a result instead of a callable
+    //we use a lambda funtion and capture the object by reference then execute inside the thread i.e :
+    std::thread _thread0001([&queueObject] {queueObject.popLog(); });
+    _thread0001.join();
 	return 0;
 }
 
@@ -42,11 +46,16 @@ static void mainthreadProduction(std::vector<text_t>& head, std::vector<text_t>&
        
     }
     
-    std::this_thread::sleep_for(500ms);
-    std::queue<text_t> copy = queueObject.getQueue();
-    //printing from our queue to check if we really recorded
-    while (!copy.empty()) {
+    
+    
+
+
+    //printing from our queue to check if we really recorded (for practice)
+    /*while (!copy.empty()) {
+        std::this_thread::sleep_for(500ms);
+        std::queue<text_t> copy = queueObject.getQueue();
         print(copy.front());
         copy.pop();
-    }
+        std::this_thread::sleep_for(500ms);
+    }*/
 }

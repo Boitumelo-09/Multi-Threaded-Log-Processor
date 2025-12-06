@@ -4,6 +4,7 @@
 #include <vector>
 #include <ctime>
 #include <thread>
+#include <atomic>
 #ifndef UTILITY_H
 #define UTILITY_H
 
@@ -14,6 +15,8 @@
 #define CLEAR_COMMAND "clear"
 #endif
 typedef std::string text_t;
+typedef int value_t;
+typedef bool switch_t;
 void clearScreen();
 void newLine();
 void pressToContinue();
