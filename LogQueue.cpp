@@ -8,7 +8,7 @@ void LogQueue::pushLogs(const std::string& log) {
 	logsQueue.push(log); // PUSHING A GENERATED LOG INTO THE QUEUE
 	taskAdded = 1;       // Preparing to signal consumer threads that a log is updated
 	/*taskAdded ? print("Success\n") : print("Fail\n");*/
-	std::this_thread::sleep_for(100ms); // pausing after adding task
+	/*std::this_thread::sleep_for(100ms); */// pausing after adding task
 	_CONDITIONVARIABLE.notify_one(); //NOTIFYING ONE THREAD THAT IT CAN NOW PROCESS DATA 
 }
 std::queue<std::string> LogQueue::getQueue() {
@@ -23,6 +23,9 @@ void LogQueue::popLog() {
 	if (!taskAdded) { _CONDITIONVARIABLE.wait(lock); }
 	//if we get signal from producer thread, we read the data in the queue and leave
 	print("Popping : "+logsQueue.front());
+	logsQueue.pop();
+
+		std::this_thread::sleep_for(100ms);
 }
 
 std::condition_variable& LogQueue::getConditionVariable() {

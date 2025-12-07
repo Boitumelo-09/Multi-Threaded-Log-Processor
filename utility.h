@@ -14,6 +14,7 @@
 #else
 #define CLEAR_COMMAND "clear"
 #endif
+typedef std::thread ATHREAD_t;
 typedef std::string text_t;
 typedef int value_t;
 typedef bool switch_t;
@@ -28,4 +29,6 @@ void verticalPadding();
 void exitProgram();
 
 void print(text_t text);
+void print(text_t text, value_t VALUE);
+void incr(value_t VALUE);
 #endif
