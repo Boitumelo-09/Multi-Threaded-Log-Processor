@@ -1,7 +1,8 @@
 #include "utility.h"
 #include "LogQueue.h"
 
-
+std::atomic<value_t> _MONITOR{ 0 };
+std::atomic<switch_t> _SHUTDOWN = false;
 
 text_t generateLog(std::vector<text_t>& head, std::vector<text_t>& messages);
 static void mainthreadProduction(std::vector<text_t>& head, std::vector<text_t>& messages, LogQueue& queueObject);
@@ -18,14 +19,18 @@ int main(void) {
     };
     LogQueue queueObject;
   
-    mainthreadProduction(types, messages, queueObject);
+    
    
     /*std::thread _thread0001(queueObject.popLog());*/
     //this is wrong, threads run callables (functions, lambdas, functors).
     //queueObject.popLog() is a function but it is not direct, so it is a result instead of a callable
-    //we use a lambda funtion and capture the object by reference then execute inside the thread i.e :
-    std::thread _thread0001([&queueObject] {queueObject.popLog(); });
+    // use a lambda funtion and capture the object by reference then execute inside the thread i.e :
+
+    std::thread _thread0001([&queueObject] {while (!_SHUTDOWN || !queueObject.getQueue().empty()) { queueObject.popLog(); }});
+   mainthreadProduction(types, messages, queueObject);
+
     _thread0001.join();
+   
 	return 0;
 }
 
@@ -39,11 +44,16 @@ text_t generateLog(std::vector<text_t>& head, std::vector<text_t>& messages) {
 }
 
 static void mainthreadProduction(std::vector<text_t>& head, std::vector<text_t>& messages, LogQueue& queueObject) {
-    for (size_t i = 0; i < 19; i++)
+    for (size_t i = 0; i < 20; i++)
     {
         text_t randomLog = generateLog(head, messages);
         queueObject.pushLogs(randomLog);
+        ++_MONITOR;
        
+        if (_MONITOR == 20) {
+            _SHUTDOWN = true;
+            queueObject.getConditionVariable().notify_all();
+        }
     }
     
     

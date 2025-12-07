@@ -19,6 +19,7 @@ public:
 	std::queue<std::string> getQueue();
 	void pushLogs(const std::string& log);
 	void popLog();
+	std::condition_variable& getConditionVariable();
 private:
 	std::mutex _MUTEX;
 	std::queue<std::string> logsQueue;
