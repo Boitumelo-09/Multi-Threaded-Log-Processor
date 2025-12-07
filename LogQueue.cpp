@@ -6,7 +6,7 @@
 void LogQueue::pushLogs(const std::string& log) {
 	std::unique_lock<std::mutex> lock(_MUTEX);
 	logsQueue.push(log); // PUSHING A GENERATED LOG INTO THE QUEUE
-	taskAdded = 1;       // Preparing to signal consumer threads that a log is updated
+	 // Preparing to signal consumer threads that a log is updated
 	/*taskAdded ? print("Success\n") : print("Fail\n");*/
 	/*std::this_thread::sleep_for(100ms); */// pausing after adding task
 	_CONDITIONVARIABLE.notify_one(); //NOTIFYING ONE THREAD THAT IT CAN NOW PROCESS DATA 
@@ -20,12 +20,13 @@ void LogQueue::popLog() {
 	std::unique_lock<std::mutex> lock(_MUTEX);
 
 	//WE GOING TO CHECK FOR SIGNAL ie. waiting for notification from the producer thread
-	if (!taskAdded) { _CONDITIONVARIABLE.wait(lock); }
+	//while (!taskAdded) { _CONDITIONVARIABLE.wait(lock); }
+	_CONDITIONVARIABLE.wait(lock, [&] {return !logsQueue.empty(); });
 	//if we get signal from producer thread, we read the data in the queue and leave
 	print("Popping : "+logsQueue.front());
 	logsQueue.pop();
 
-		std::this_thread::sleep_for(100ms);
+		std::this_thread::sleep_for(500ms);
 }
 
 std::condition_variable& LogQueue::getConditionVariable() {

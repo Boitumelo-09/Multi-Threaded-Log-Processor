@@ -40,5 +40,6 @@ void clearBuffer() {
 }
 
 void print(text_t text) { std::cout << text << std::endl; }
+void print(value_t VALUE) { std::cout << VALUE << std::endl; }
 void print(text_t text , value_t VALUE) { std::cout << text <<VALUE<< std::endl; }
-void incr(value_t VALUE) { ++VALUE; }
+void incr(value_t& number) { number++; }

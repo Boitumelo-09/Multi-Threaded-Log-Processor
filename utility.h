@@ -29,6 +29,7 @@ void verticalPadding();
 void exitProgram();
 
 void print(text_t text);
+void print(value_t VALUE);
 void print(text_t text, value_t VALUE);
-void incr(value_t VALUE);
+void incr(value_t& number);
 #endif
