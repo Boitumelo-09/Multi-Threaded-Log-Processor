@@ -127,6 +127,7 @@
     <ClInclude Include="LogQueue.h" />
     <ClInclude Include="Shutdown.h" />
     <ClInclude Include="utility.h" />
+    <ClInclude Include="Vectors.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Counter.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Shutdown.cpp" />
     <ClCompile Include="utility.cpp" />
+    <ClCompile Include="Vectors.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
