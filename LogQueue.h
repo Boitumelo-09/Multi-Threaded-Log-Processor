@@ -9,7 +9,7 @@
 
 using namespace std::chrono_literals;
 
-//this class will have a que THAT STORES THE GENERATED LOGS
+
 
 class LogQueue
 {
