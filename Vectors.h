@@ -14,6 +14,7 @@ class Vectors
 	Shutdown& shutdown;
 
 public :
+	text_t generateLog(std::vector<text_t> logIdentifiers, std::vector<text_t> logMessages);
 	text_t generateLog();
        
 };
