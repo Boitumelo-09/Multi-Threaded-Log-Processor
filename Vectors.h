@@ -15,6 +15,6 @@ class Vectors
 
 public :
 	text_t generateLog();
-       
+   
 };
 
