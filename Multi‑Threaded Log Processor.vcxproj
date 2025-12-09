@@ -125,12 +125,14 @@
   <ItemGroup>
     <ClInclude Include="Counter.h" />
     <ClInclude Include="LogQueue.h" />
+    <ClInclude Include="Shutdown.h" />
     <ClInclude Include="utility.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Counter.cpp" />
     <ClCompile Include="LogQueue.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Shutdown.cpp" />
     <ClCompile Include="utility.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
