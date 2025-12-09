@@ -36,7 +36,7 @@
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="Counter.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
