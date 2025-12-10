@@ -7,10 +7,12 @@ const std::vector<text_t> logMessages = { "Temperature reading normal","Memory u
 text_t Vectors::generateLog() {
    // srand(time(NULL)); // will be in class System
 
-    std::unique_lock<std::mutex> lock(_MUTEX);
-    value_t _IDFINDEX = rand() % logIdentifiers.size();
-    value_t _MSGINDEX = rand() % logMessages.size();
-    _CONDVAR.notify_all();
-    return "log : [" + logIdentifiers[_IDFINDEX] + " : " + logMessages[_MSGINDEX] + "]";
+    {
+        std::unique_lock<std::mutex> lock(_MUTEX);
+        value_t _IDFINDEX = rand() % logIdentifiers.size();
+        value_t _MSGINDEX = rand() % logMessages.size();
 
+        return "log : [" + logIdentifiers[_IDFINDEX] + " : " + logMessages[_MSGINDEX] + "]";
+    }
+          _CONDVAR.notify_all();
     }
