@@ -11,9 +11,9 @@ class LogQueue
 	Counter& counter;
 	Shutdown& shutdown;
 public:
-	LogQueue();
+	LogQueue(Shutdown& s, Counter& c);
 	~LogQueue();
-	void pushLogs(const std::string& log);
-	void popLog();
+	void pushGeneratedLogs(const std::string& log);
+	void popGeneratedLogs();
 };
 
