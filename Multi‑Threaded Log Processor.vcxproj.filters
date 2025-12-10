@@ -30,6 +30,9 @@
     <ClInclude Include="Vectors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LogQueue.cpp">
@@ -48,6 +51,9 @@
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="Vectors.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
