@@ -63,3 +63,9 @@ void incr(value_t& number);
 
 
 #endif
+
+//NOTES
+//
+//
+// THE SEED OF <CTIME> SHOULD BE CASTED TO IUNSIGNED INT AND DECLARED IN THE SYSTEMS/MAIN FUNTION
+// i.e srand(static_cast<unsigned int>(time(NULL))); => copy and paste for your seed.

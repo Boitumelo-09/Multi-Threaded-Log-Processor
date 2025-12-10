@@ -31,7 +31,7 @@ void exitProgram() {
     exit(0);
 }
 void clearBuffer() {
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 }
 
 void print(text_t text) { std::cout << text << std::endl; }
