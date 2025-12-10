@@ -1,29 +1,19 @@
 #pragma once
-#include <string>
-#include <iostream>
-#include <mutex>
-#include <ctime>
-#include <chrono>
-#include <condition_variable>
-#include <queue>
-
-using namespace std::chrono_literals;
-
-
+#include "utility.h"
+#include "Counter.h"
+#include "Shutdown.h"
 
 class LogQueue
 {
-public:
-	LogQueue();
-	~LogQueue();
-	std::queue<std::string> getQueue();
-	void pushLogs(const std::string& log);
-	void popLog();
-	std::condition_variable& getConditionVariable();
-private:
 	std::mutex _MUTEX;
 	std::queue<std::string> logsQueue;
 	std::condition_variable _CONDITIONVARIABLE;
-	bool taskAdded = 0;
+	Counter& counter;
+	Shutdown& shutdown;
+public:
+	LogQueue();
+	~LogQueue();
+	void pushLogs(const std::string& log);
+	void popLog();
 };
 
