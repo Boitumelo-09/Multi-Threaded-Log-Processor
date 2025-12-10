@@ -13,7 +13,7 @@ class LogQueue
 public:
 	LogQueue(Shutdown& s, Counter& c);
 	~LogQueue();
-	void pushGeneratedLogs(const std::string& log);
+	void pushGeneratedLogs(const text_t& log);
 	void popGeneratedLogs();
 };
 

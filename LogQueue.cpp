@@ -19,12 +19,24 @@ LogQueue::~LogQueue() {
 }
 
 void LogQueue::pushGeneratedLogs(const text_t& log) {
-	while (!shutdown.getShutdownState())
-	{
 
+	{
+		std::lock_guard<std::mutex>lock(_MUTEX);
+		logsQueue.push(log);
+
+		counter.increment();
+
+		if (counter.getCounter() >= 20) {
+			shutdown.setShutdownState();
+			_CONDITIONVARIABLE.notify_all();
+			return;
+		}
 	}
+		_CONDITIONVARIABLE.notify_one(); //notifying one thread that we're there's data loaded
 }
-void popGeneratedLogs();
+void popGeneratedLogs() {
+
+}
 
 
 
