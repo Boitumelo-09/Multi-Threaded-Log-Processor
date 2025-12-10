@@ -34,6 +34,7 @@ typedef std::thread ATHREAD_t;
 typedef std::string text_t;
 typedef int value_t;
 typedef bool switch_t;
+typedef char char_t;
 
 
 // MACROS
@@ -59,7 +60,16 @@ void exitProgram();
 void print(text_t text);
 void print(value_t VALUE);
 void print(text_t text, value_t VALUE);
+void printChar(char_t chr);
+
+    // -CUSTOM MATHEMATICAL FUNCTIONS   
 void incr(value_t& number);
 
 
 #endif
+
+//NOTES
+//
+//
+// THE SEED OF <CTIME> SHOULD BE CASTED TO IUNSIGNED INT AND DECLARED IN THE SYSTEMS/MAIN FUNTION
+// i.e srand(static_cast<unsigned int>(time(NULL))); => copy and paste for your seed.
