@@ -14,9 +14,7 @@ class Vectors
 	Shutdown& shutdown;
 
 public :
-	
 	text_t generateLog();
    
-       
 };
 
