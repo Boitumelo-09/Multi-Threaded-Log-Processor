@@ -1,7 +1,5 @@
 #pragma once
 #include "utility.h"
-#include "Counter.h"
-#include "Shutdown.h"
 
 class Vectors
 {
@@ -10,13 +8,9 @@ class Vectors
 	static const  std::vector<text_t> logMessages;
 	std::mutex _MUTEX;
 	std::condition_variable _CONDVAR;
-	Counter& counter;
-	Shutdown& shutdown;
 
 public :
-	
 	text_t generateLog();
    
-       
 };
 
