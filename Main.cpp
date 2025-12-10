@@ -1,12 +1,10 @@
-#include "utility.h"
-#include "LogQueue.h"
-
-
-
+#include "System.h"
 
 
 int main(void) {
-
+	
+	System application;
+	application.run();
    
 	return 0;
 }
