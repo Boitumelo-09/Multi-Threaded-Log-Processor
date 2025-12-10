@@ -57,10 +57,10 @@ void exitProgram();
 
 
     // - CUSTOM USER DEFINED
-void print(text_t text);
-void print(value_t VALUE);
-void print(text_t text, value_t VALUE);
-void printChar(char_t chr);
+void print(text_t& text);
+void printInt(value_t& VALUE);
+void printTextAndValue(text_t& text, value_t& VALUE);
+void printChar(char_t& chr);
 
     // -CUSTOM MATHEMATICAL FUNCTIONS   
 void incr(value_t& number);

@@ -34,9 +34,9 @@ void clearBuffer() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 }
 
-void print(text_t text) { std::cout << text << std::endl; }
-void print(value_t VALUE) { std::cout << VALUE << std::endl; }
-void print(text_t text , value_t VALUE) { std::cout << text <<VALUE<< std::endl; }
-void printChar(char_t chr) { std::cout << chr << std::endl; }
+void print(text_t& text) { std::cout << text << std::endl; }
+void printInt(value_t& VALUE) { std::cout << VALUE; }
+void printTextAndValue(text_t& text , value_t& VALUE) { std::cout << text <<VALUE<< std::endl; }
+void printChar(char_t& chr) { std::cout << chr; }
 
 void incr(value_t& number) { number++; }
