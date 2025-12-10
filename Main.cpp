@@ -3,8 +3,8 @@
 
 int main(void) {
 	
-	System application;
-	application.run();
+	System* application = new System();
+	application->run();
    
 	return 0;
 }
