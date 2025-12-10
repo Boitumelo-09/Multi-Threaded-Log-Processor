@@ -21,7 +21,7 @@ LogQueue::~LogQueue() {
 void LogQueue::pushGeneratedLogs(const text_t& log) {
 
 	{
-		std::lock_guard<std::mutex>lock(_MUTEX);
+		std::unique_lock<std::mutex>lock(_MUTEX);
 		logsQueue.push(log);
 
 		counter.increment();
@@ -34,8 +34,19 @@ void LogQueue::pushGeneratedLogs(const text_t& log) {
 	}
 		_CONDITIONVARIABLE.notify_one(); //notifying one thread that we're there's data loaded
 }
-void popGeneratedLogs() {
+void LogQueue::popGeneratedLogs() {
+	{
 
+		std::unique_lock<std::mutex>lock(_MUTEX);
+		_CONDITIONVARIABLE.wait(lock, [&] {return shutdown.getShutdownState() || counter.getCounter() > 0; });
+
+		if (!logsQueue.empty())
+		{
+			print(logsQueue.front());
+			logsQueue.pop();
+		}
+		
+	}
 }
 
 
