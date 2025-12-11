@@ -28,6 +28,9 @@
 using std::string;
 using namespace std::chrono_literals;
 
+// VARIABLE DECLARATIONS
+static std::mutex _mtx;
+static std::condition_variable _cvrbl;
 
 // TYPEDEF ALIASES
 typedef std::thread ATHREAD_t;
@@ -48,7 +51,7 @@ typedef char char_t;
  
     // -SYSTEM FLOW AND DESIGN
 void clearScreen();
-void newLine();
+void newLine(value_t lines);
 void pressToContinue();
 void clearBuffer();
 text_t horizontalPadding();
@@ -58,7 +61,7 @@ void exitProgram();
 
     // - CUSTOM USER DEFINED
 void print(text_t& text);
-
+void printMessage(text_t& message, value_t time);
 void printInt(value_t& VALUE);
 void printTextAndValue(text_t& text, value_t& VALUE);
 void printChar(char_t& chr);

@@ -3,18 +3,18 @@
 void clearScreen() {
     system(CLEAR_COMMAND);
 }
-void newLine() {
-    std::cout << text_t(2, '\n');
+void newLine(value_t lines) {
+    std::cout << text_t(lines, '\n');
 }
 void pressToContinue() {
-    newLine();
+    newLine(2);
     std::cout << horizontalPadding() << "Press Enter To Proceed...";
     std::cin.get();
     clearScreen();
 }
 
 void verticalPadding() {
-    std::cout << text_t(5, '\n');
+    std::cout << text_t(3, '\n');
 }
 text_t horizontalPadding() {
     return  std::string(5, '\t');
@@ -35,7 +35,16 @@ void clearBuffer() {
 }
 
 void print(text_t& text) { std::cout << text << std::endl; }
-
+void printMessage(text_t& message,value_t time) {
+    text_t stringArray = message;
+    std::lock_guard<std::mutex> _lock(_mtx);
+    for (auto i : stringArray) {
+        printChar(i);
+        std::this_thread::sleep_for(std::chrono::milliseconds(time));
+    }
+    newLine(1);
+    _cvrbl.notify_all();
+}
 void printInt(value_t& VALUE) { std::cout << VALUE; }
 void printTextAndValue(text_t& text , value_t& VALUE) { std::cout << text <<VALUE<< std::endl; }
 void printChar(char_t& chr) { std::cout << chr; }
