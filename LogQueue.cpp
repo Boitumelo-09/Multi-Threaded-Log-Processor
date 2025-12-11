@@ -42,7 +42,8 @@ void LogQueue::popGeneratedLogs() {
 
 		if (!logsQueue.empty())
 		{
-			print(logsQueue.front());
+			printMessage(logsQueue.front(), 50);
+			
 			logsQueue.pop();
 		}
 		
