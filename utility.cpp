@@ -35,6 +35,7 @@ void clearBuffer() {
 }
 
 void print(text_t& text) { std::cout << text << std::endl; }
+
 void printInt(value_t& VALUE) { std::cout << VALUE; }
 void printTextAndValue(text_t& text , value_t& VALUE) { std::cout << text <<VALUE<< std::endl; }
 void printChar(char_t& chr) { std::cout << chr; }

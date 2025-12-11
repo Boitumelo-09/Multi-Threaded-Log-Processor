@@ -58,6 +58,7 @@ void exitProgram();
 
     // - CUSTOM USER DEFINED
 void print(text_t& text);
+
 void printInt(value_t& VALUE);
 void printTextAndValue(text_t& text, value_t& VALUE);
 void printChar(char_t& chr);
