@@ -8,6 +8,8 @@ class LogQueue
 	std::mutex _MUTEX;
 	std::queue<std::string> logsQueue;
 	std::condition_variable _CONDITIONVARIABLE;
+	std::condition_variable _logRegContrlVrbl;
+
 	Counter& counter;
 	Shutdown& shutdown;
 public:
@@ -15,5 +17,5 @@ public:
 	~LogQueue();
 	void pushGeneratedLogs(const text_t& log);
 	void popGeneratedLogs();
+	void showLogRegistration();
 };
-

@@ -24,7 +24,11 @@ void LogQueue::pushGeneratedLogs(const text_t& log) {
 		std::unique_lock<std::mutex>lock(_MUTEX);
 		logsQueue.push(log);
 
-		counter.increment();
+		{
+			counter.increment();
+			_logRegContrlVrbl.notify_one();
+		}
+		
 
 		if (counter.getCounter() >= 20) {
 			shutdown.setShutdownState();
@@ -39,7 +43,7 @@ void LogQueue::popGeneratedLogs() {
 
 		std::unique_lock<std::mutex>lock(_MUTEX);
 		_CONDITIONVARIABLE.wait(lock, [&] {return shutdown.getShutdownState() || counter.getCounter() > 0; });
-
+	
 		if (!logsQueue.empty())
 		{
 			printMessage(logsQueue.front(), 50);
@@ -49,7 +53,18 @@ void LogQueue::popGeneratedLogs() {
 		
 	}
 }
+void LogQueue::showLogRegistration(){
+	{
 
+		std::unique_lock<std::mutex> lock(_MUTEX);
+		_logRegContrlVrbl.wait(lock, [&] {return shutdown.getShutdownState() || counter.getCounter() > 0; });
+		size_t value = counter.getCounter();
+		if (!logsQueue.empty() && !shutdown.getShutdownState())
+		{
+			std::cout << value;
+		}
+	}
+}
 
 
 
