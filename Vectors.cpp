@@ -1,6 +1,6 @@
 #include "Vectors.h"
 
-const std::vector<text_t> Vectors::logIdentifiers = { "INFO", "WARNING", "ERROR", "DEBUG", "CRITICAL","SYSTEM", "NETWORK", "SECURITY" };
+const std::vector<text_t> Vectors::logIdentifiers = { "INFO    ", "WARNING ", "ERROR   ", "DEBUG   ", "CRITICAL","SYSTEM  ", "NETWORK ", "SECURITY" };
 
 const std::vector<text_t> Vectors::logMessages = { "Temperature reading normal","Memory usage is above expected threshold","Sensor disconnected unexpectedly","Battery level is critically low","Voltage spike detected on main line","Network latency rising","Unauthorized access attempt detected","System clock drift observed","File read/write operation failed","Thread pool reaching maximum load","Cache miss rate increased","Database connection lost","Watchdog timer triggered","Firmware integrity check failed","Power supply unstable","I/O device not responding","Stack usage unusually high","Background process terminated","Packet loss detected","Resource allocation timeout" };
 
