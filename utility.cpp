@@ -8,7 +8,8 @@ void newLine(value_t lines) {
 }
 void pressToContinue() {
     newLine(2);
-    std::cout << horizontalPadding() << "Press Enter To Proceed...";
+    text_t padding = horizontalPadding() + "Press Enter To Proceed...";
+    printMessage(padding , 50);
     std::cin.get();
     clearScreen();
 }
