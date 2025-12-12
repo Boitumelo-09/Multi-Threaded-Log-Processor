@@ -17,5 +17,5 @@ public:
 	~LogQueue();
 	void pushGeneratedLogs(const text_t& log);
 	void popGeneratedLogs();
-	void showLogRegistration();
+	/*void showLogRegistration();*/
 };

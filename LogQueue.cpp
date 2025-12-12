@@ -27,11 +27,7 @@ void LogQueue::pushGeneratedLogs(const text_t& log) {
 		
 			counter.increment();
 			_logRegContrlVrbl.notify_one();
-		
-		
-
-
-		if (counter.getCounter() >= 20) {
+			if (counter.getCounter() >= 20) {
 			shutdown.setShutdownState();
 			_CONDITIONVARIABLE.notify_all();
 			return;
@@ -66,24 +62,25 @@ void LogQueue::popGeneratedLogs() {
 //		}
 //	}
 //}
-void LogQueue::showLogRegistration()
-{
-	value_t lastSeenCounter{ 0 };
-	while (!shutdown.getShutdownState())
-	{
-		std::unique_lock<std::mutex> lock(_MUTEX);
-		_logRegContrlVrbl.wait(lock, [&] {
-			return shutdown.getShutdownState() || counter.getCounter() > lastSeenCounter;
-			});
-
-		if (shutdown.getShutdownState()) break;
-
-		lastSeenCounter = counter.getCounter();
-		
-		printInt(lastSeenCounter);
-		
-	}
-}
+//void LogQueue::showLogRegistration()
+//{
+//	value_t lastSeenCounter{ 0 };
+//	while (!shutdown.getShutdownState())
+//	{
+//		std::unique_lock<std::mutex> lock(_MUTEX);
+//		_logRegContrlVrbl.wait(lock, [&] {
+//			return shutdown.getShutdownState() || counter.getCounter() > lastSeenCounter;
+//			});
+//
+//		if (shutdown.getShutdownState()) break;
+//
+//		lastSeenCounter = counter.getCounter();
+//		
+//		printInt(lastSeenCounter);
+//		std::this_thread::sleep_for(5ms);
+//	}
+//	
+//}
 
 
 
